@@ -1,0 +1,116 @@
+
+
+
+// weatherSearchCache = (city) => {
+//   const api = setup({
+//     cache: {
+//       maxAge: 15 * 60 * 1000
+//     }
+//   })
+//
+//   api({
+//     url: ('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775'),
+//     method: 'get'
+//   }).then(response => {
+//     // Do something awesome with response.data \o/
+//     // console.log("----------------------")
+//     console.log('Request response:', response)
+//
+//     // Interacting with the store, see `localForage` API.
+//     api.cache.length().then(length => {
+//       console.log('Cache store length:', length)
+//     })
+//   })
+// }
+
+// weatherSearch2 = query => {
+//   API.search(query)
+//     .then(res =>
+//     //   console.log(res.data.main.temp)
+//       this.setState({
+//         city2: res.data.name,
+//         temp: res.data.main.temp,
+//         tempConverted: parseInt(res.data.main.temp * 9/5 - 459.67, 10) + '℉',
+//         low: res.data.main.temp_min,
+//         lowConverted: parseInt(res.data.main.temp_min * 9/5 - 459.67, 10) + '℉',
+//         high: res.data.main.temp_max,
+//         highConverted: parseInt(res.data.main.temp_max * 9/5 - 459.67, 10) + '℉',
+//         windSpeed: res.data.wind.speed,
+//         humidity: res.data.main.humidity,
+//         description: res.data.weather[0].description,
+//         results2: res.data,
+//         isLoaded: true,
+//         pressure: res.data.main.pressure,
+//         })
+//       )
+//     .catch(err => console.log(err));
+// };
+
+
+
+
+
+
+  // weatherSearch = (city) => {
+  //   axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775')
+  //     .then(response =>
+  //       console.log(response.data)
+  //       // this.setState({ results2: response.data.main })
+  //     )
+  //     .catch(function (error) {
+  //       console.log(error);
+  //   });
+  // }
+
+  // weatherSearchCache = (city) => {
+  //   const api = setup({
+  //     cache: {
+  //       maxAge: 15 * 60 * 1000
+  //     }
+  //   })
+  //
+  //   api({
+  //     url: ('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775'),
+  //     method: 'get'
+  //   }).then(response => {
+  //     // Do something awesome with response.data \o/
+  //     // console.log("----------------------")
+  //     console.log('Request response:', response)
+  //
+  //     // Interacting with the store, see `localForage` API.
+  //     api.cache.length().then(length => {
+  //       console.log('Cache store length:', length)
+  //     })
+  //   })
+  // }
+
+
+
+
+
+
+
+
+
+
+// weatherSearch = (city) => {
+//   axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775')
+//     .then(response =>
+//       console.log(response.data)
+//       // this.setState({ results2: response.data.main })
+//     )
+//     .catch(function (error) {
+//       console.log(error);
+//   });
+// }
+
+
+
+
+          // <p>Result: { this.state.results2. }</p>
+
+//
+// <div style={footerStyle}>
+//  <center><p>Copyright Patrick Luu</p></center>
+//
+// </div>
