@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 // import summer from "./images/summer.jpg";
 import sunny from "./images/sunny3.png";
+import rain from "./images/rain.jpg";
+import cloudy from "./images/cloudy.png";
+import mist from "./images/mist.png";
+import thunderstorm from "./images/thunderstorm.png";
 // import API from "../utils/API";
 import axios from "axios";
 // import { setup } from 'axios-cache-adapter';
 import { setupCache } from 'axios-cache-adapter'
-
 import { Grid, Row, Col, Image } from 'react-bootstrap';
 import Results from './WeatherResults';
 import Search from './NavSearch';
+
+
 
 class SearchResultContainer extends Component {
   state = {
     results2: [],
     isLoaded: false,
-    city: null,
+    city: "Oakland",
     city2: null,
     temp: null,
     tempConverted: undefined,
@@ -30,12 +35,15 @@ class SearchResultContainer extends Component {
     selectedButton: "Fehrenheit",
     pressure: null,
     visibility: null,
+    weatherArr: [],
   };
 
   componentDidMount() {
-    this.weatherSearchCache("Oakland");
+    this.weatherSearchCache(this.state.city);
+    // this.weatherSearch("Oakland");
     // this.weatherSearch2("Oakland");
   }
+
 
   weatherSearchCache = (city) => {
     const cache = setupCache({
@@ -50,6 +58,7 @@ class SearchResultContainer extends Component {
       url: ('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775'),
       method: 'get'
     }).then(res =>
+
         this.setState({
         city2: res.data.name,
         temp: res.data.main.temp,
@@ -63,11 +72,12 @@ class SearchResultContainer extends Component {
         description: res.data.weather[0].description,
         results2: res.data,
         isLoaded: true,
-        pressure: res.data.main.pressure,
+        pressure: parseInt((res.data.main.pressure * .02952998), 10),
         visibility: (res.data.visibility/1609.34),
+        weatherArr: (res.data.weather[0].description).split(" "),
         })
       )
-      .catch(err => console.log(err));
+      .catch(err => alert("Enter a valid city"));
 
   }
 
@@ -85,8 +95,7 @@ class SearchResultContainer extends Component {
     event.preventDefault();
     // this.weatherSearch2(this.state.city);
     this.weatherSearchCache(this.state.city);
-    console.log(this.state.results2)
-
+    // console.log(this.state.weatherArr);
   };
 
   handleFehrenheit = event => {
@@ -116,6 +125,24 @@ class SearchResultContainer extends Component {
       grayButton: !this.state.grayButton,
       selectedButton: key,
     })
+  }
+
+  handleImage = (weatherArr) => {
+    // let weatherArr = weather.split(" ");
+
+    if(weatherArr.indexOf("mist") !== -1) {
+      return mist;
+    } else if(weatherArr.indexOf("clouds") !== -1) {
+      return cloudy;
+    } else if(weatherArr.indexOf("sunny") !== -1) {
+      return sunny;
+    } else if(weatherArr.indexOf("rain") !== -1) {
+      return rain;
+    } else if(weatherArr.indexOf("thunderstorm") !== -1) {
+      return thunderstorm;
+    } else {
+      return sunny;
+    }
   }
 
   render() {
@@ -191,13 +218,15 @@ class SearchResultContainer extends Component {
                  blueStyle={blueStyle} grayStyle={grayStyle} pressure={this.state.pressure}
                  visibility={this.state.visibility} />
 
+
                </div>
 
            </Col>
            <Col md={6} mdPull={6}>
 
               <div>
-                <Image src={sunny} responsive alt="summer" />
+
+                <Image src={this.handleImage(this.state.weatherArr)} height="600px" width="600px" responsive alt="summer" />
               </div>
 
            </Col>
@@ -218,3 +247,21 @@ class SearchResultContainer extends Component {
 }
 
 export default SearchResultContainer;
+
+
+
+
+
+// <Image src={sunny} responsive alt="summer" />
+
+
+// weatherSearch = (city) => {
+//   axios.get('http://api.openweathermap.org/data/2.5/weather?q=' + city +'&APPID=6bf9870e82dcbe8003e32440f76c2775')
+//     .then(response =>
+//       console.log(response.data)
+//       // this.setState({ results2: response.data.main })
+//     )
+//     .catch(function (error) {
+//       console.log(error);
+//   });
+// }
