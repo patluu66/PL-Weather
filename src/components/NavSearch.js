@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, FormGroup, FormControl, Grid, Row, Col } from 'react-bootstrap';
+import { Button, Navbar, Grid, Row, Col } from 'react-bootstrap';
 
 const Search = props =>
     <Navbar style={props.navStyle}>
@@ -13,10 +13,24 @@ const Search = props =>
     </Navbar.Header>
     <Navbar.Collapse>
       <Navbar.Form pullLeft>
-        <FormGroup>
-          <FormControl type="text" placeholder="City" name="city" onChange={props.handleInputChange}/>
-        </FormGroup>{' '}
-        <Button onClick={props.handleFormSubmit} style={props.submitButtonStyle} type="submit">Search</Button>
+
+      <form>
+        <div className="form-group">
+          <input
+            onChange={props.handleInputChange}
+            value={props.search}
+            name="search"
+            type="text"
+            className="form-control"
+            placeholder="City"
+            id="search"
+          />
+
+           <Button onClick={props.handleFormSubmit} style={props.submitButtonStyle} type="submit">Search</Button>
+        </div>
+      </form>
+
+
 
       </Navbar.Form>
     </Navbar.Collapse>
@@ -38,3 +52,20 @@ const Search = props =>
 
 
 export default Search;
+
+
+
+
+
+
+
+
+// <Button onClick={props.handleFormSubmit} style={props.submitButtonStyle} type="submit" className="btn btn-primary">
+//   Search
+// </Button>
+
+
+// <FormGroup>
+//   <FormControl type="text" placeholder="City" name="city" onChange={props.handleInputChange}/>
+// </FormGroup>{' '}
+// <Button onClick={props.handleFormSubmit} style={props.submitButtonStyle} type="submit">Search</Button>

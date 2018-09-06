@@ -17,7 +17,7 @@ const Results = props =>
         <h5>{ props.low } / { props.high }</h5>
         <p>{ props.wind } mph wind</p>
         <p>{ props.humidity }% humidity</p>
-        <p>{ props.pressure } inches pressure</p>
+        <p>{ props.pressure } inches of Mercury pressure</p>
         <p>{ parseInt(props.visibility, 10) } miles visibility</p>
       </ul>
 

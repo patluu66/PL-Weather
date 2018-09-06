@@ -17,6 +17,7 @@ import Search from './NavSearch';
 
 class SearchResultContainer extends Component {
   state = {
+    search: "",
     results2: [],
     isLoaded: false,
     city: "Oakland",
@@ -39,9 +40,9 @@ class SearchResultContainer extends Component {
   };
 
   componentDidMount() {
-    this.weatherSearchCache(this.state.city);
-    // this.weatherSearch("Oakland");
-    // this.weatherSearch2("Oakland");
+    // this.weatherSearchCache(this.state.city);
+    this.weatherSearchCache('Oakland');
+    // this.weatherSearchCache(this.state.search);
   }
 
 
@@ -94,7 +95,8 @@ class SearchResultContainer extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // this.weatherSearch2(this.state.city);
-    this.weatherSearchCache(this.state.city);
+    // this.weatherSearchCache(this.state.city);
+    this.weatherSearchCache(this.state.search);
     // console.log(this.state.weatherArr);
   };
 
@@ -168,6 +170,7 @@ class SearchResultContainer extends Component {
     let submitButtonStyle = {
       backgroundColor: '#2177c2',
       color: 'white',
+      margin: '0 0 0 10px',
     }
 
     let navStyle = {
@@ -201,7 +204,7 @@ class SearchResultContainer extends Component {
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit} submitButtonStyle={submitButtonStyle}
           city2={this.state.city2} currentWeatherStyle={currentWeatherStyle}
-          />
+          search={this.state.search} />
         </div>
 
       <Grid>
@@ -217,7 +220,6 @@ class SearchResultContainer extends Component {
                  selectedButton={this.state.selectedButton}  handleCelsius={this.handleCelsius}
                  blueStyle={blueStyle} grayStyle={grayStyle} pressure={this.state.pressure}
                  visibility={this.state.visibility} />
-
 
                </div>
 
